@@ -1,0 +1,10 @@
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: future-user-service
+          uri: lb://future-user-service
+          predicates:
+            - Path=/api/v1/ucenter/**
+          filters:
+            - StripPrefix=3

@@ -11,9 +11,10 @@
 
     <modules>
         <module>future-auth-center</module>
-        <module>future-gateway</module>
         <module>future-user-center</module>
         <module>future-commons</module>
+        <module>future-order-center</module>
+        <module>future-api-gateway</module>
     </modules>
 
     <properties>
