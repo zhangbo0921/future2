@@ -1,69 +1,265 @@
+/*
+ Navicat Premium Data Transfer
+
+ Source Server         : 华为云-121.37.199.92
+ Source Server Type    : MySQL
+ Source Server Version : 80018
+ Source Host           : 121.37.199.92:3306
+ Source Schema         : future_auth_center
+
+ Target Server Type    : MySQL
+ Target Server Version : 80018
+ File Encoding         : 65001
+
+ Date: 20/02/2021 11:55:47
+*/
+
+SET NAMES utf8mb4;
+SET FOREIGN_KEY_CHECKS = 0;
+
+-- ----------------------------
+-- Table structure for clientdetails
+-- ----------------------------
+DROP TABLE IF EXISTS `clientdetails`;
+CREATE TABLE `clientdetails`  (
+  `appId` varchar(128) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `resourceIds` varchar(256) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `appSecret` varchar(256) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `scope` varchar(256) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `grantTypes` varchar(256) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `redirectUrl` varchar(256) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `authorities` varchar(256) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `access_token_validity` int(11) NULL DEFAULT NULL,
+  `refresh_token_validity` int(11) NULL DEFAULT NULL,
+  `additionalInformation` varchar(4096) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `autoApproveScopes` varchar(256) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  PRIMARY KEY (`appId`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of clientdetails
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for oauth_access_token
+-- ----------------------------
 DROP TABLE IF EXISTS `oauth_access_token`;
-CREATE TABLE `oauth_access_token`
-(
-    `token_id`          varchar(255) DEFAULT NULL COMMENT '加密的access_token的值',
-    `token`             longblob COMMENT 'OAuth2AccessToken.java对象序列化后的二进制数据',
-    `authentication_id` varchar(255) DEFAULT NULL COMMENT '加密过的username,client_id,scope',
-    `user_name`         varchar(255) DEFAULT NULL COMMENT '登录的用户名',
-    `client_id`         varchar(255) DEFAULT NULL COMMENT '客户端ID',
-    `authentication`    longblob COMMENT 'OAuth2Authentication.java对象序列化后的二进制数据',
-    `refresh_token`     varchar(255) DEFAULT NULL COMMENT '加密的refresh_token的值'
-) ENGINE = InnoDB
-  DEFAULT CHARSET = utf8;
+CREATE TABLE `oauth_access_token`  (
+  `token_id` varchar(256) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `token` blob NULL,
+  `authentication_id` varchar(128) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `user_name` varchar(256) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `client_id` varchar(256) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `authentication` blob NULL,
+  `refresh_token` varchar(256) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  PRIMARY KEY (`authentication_id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
+-- ----------------------------
+-- Records of oauth_access_token
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for oauth_approvals
+-- ----------------------------
 DROP TABLE IF EXISTS `oauth_approvals`;
-CREATE TABLE `oauth_approvals`
-(
-    `userId`         varchar(255) DEFAULT NULL COMMENT '登录的用户名',
-    `clientId`       varchar(255) DEFAULT NULL COMMENT '客户端ID',
-    `scope`          varchar(255) DEFAULT NULL COMMENT '申请的权限范围',
-    `status`         varchar(10)  DEFAULT NULL COMMENT '状态（Approve或Deny）',
-    `expiresAt`      datetime     DEFAULT NULL COMMENT '过期时间',
-    `lastModifiedAt` datetime     DEFAULT NULL COMMENT '最终修改时间'
-) ENGINE = InnoDB
-  DEFAULT CHARSET = utf8;
+CREATE TABLE `oauth_approvals`  (
+  `userId` varchar(256) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `clientId` varchar(256) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `scope` varchar(256) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `status` varchar(10) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `expiresAt` datetime(0) NULL DEFAULT NULL,
+  `lastModifiedAt` datetime(0) NULL DEFAULT NULL
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
+-- ----------------------------
+-- Records of oauth_approvals
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for oauth_client_details
+-- ----------------------------
 DROP TABLE IF EXISTS `oauth_client_details`;
-CREATE TABLE `oauth_client_details`
-(
-    `client_id`               varchar(255) NOT NULL COMMENT '客户端ID',
-    `resource_ids`            varchar(255) DEFAULT NULL COMMENT '资源ID集合,多个资源时用逗号(,)分隔',
-    `client_secret`           varchar(255) DEFAULT NULL COMMENT '客户端密匙',
-    `scope`                   varchar(255) DEFAULT NULL COMMENT '客户端申请的权限范围',
-    `authorized_grant_types`  varchar(255) DEFAULT NULL COMMENT '客户端支持的grant_type',
-    `web_server_redirect_uri` varchar(255) DEFAULT NULL COMMENT '重定向URI',
-    `authorities`             varchar(255) DEFAULT NULL COMMENT '客户端所拥有的Spring Security的权限值，多个用逗号(,)分隔',
-    `access_token_validity`   int(11)      DEFAULT NULL COMMENT '访问令牌有效时间值(单位:秒)',
-    `refresh_token_validity`  int(11)      DEFAULT NULL COMMENT '更新令牌有效时间值(单位:秒)',
-    `additional_information`  varchar(255) DEFAULT NULL COMMENT '预留字段',
-    `autoapprove`             varchar(255) DEFAULT NULL COMMENT '用户是否自动Approval操作'
-) ENGINE = InnoDB
-  DEFAULT CHARSET = utf8;
+CREATE TABLE `oauth_client_details`  (
+  `client_id` varchar(128) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '主键，客户端ID',
+  `resource_ids` varchar(256) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '客户端所能访问的资源id集合，多个资源时用逗号(,)分隔',
+  `client_secret` varchar(256) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '客户端访问密匙',
+  `scope` varchar(256) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '客户端申请的权限范围，可选值包括read,write,trust;若有多个权限范围用逗号(,)分隔',
+  `authorized_grant_types` varchar(256) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '客户端支持的授权许可类型(grant_type)，可选值包括authorization_code,password,refresh_token,implicit,client_credentials,若支持多个授权许可类型用逗号(,)分隔',
+  `web_server_redirect_uri` varchar(256) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '客户端重定向URI，当grant_type为authorization_code或implicit时, 在Oauth的流程中会使用并检查与数据库内的redirect_uri是否一致',
+  `authorities` varchar(256) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '客户端所拥有的Spring Security的权限值,可选, 若有多个权限值,用逗号(,)分隔',
+  `access_token_validity` int(11) NULL DEFAULT NULL COMMENT '设定客户端的access_token的有效时间值(单位:秒)，若不设定值则使用默认的有效时间值(60 * 60 * 12, 12小时)',
+  `refresh_token_validity` int(11) NULL DEFAULT NULL COMMENT '设定客户端的refresh_token的有效时间值(单位:秒)，若不设定值则使用默认的有效时间值(60 * 60 * 24 * 30, 30天)',
+  `additional_information` varchar(4096) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '这是一个预留的字段,在Oauth的流程中没有实际的使用,可选,但若设置值,必须是JSON格式的数据',
+  `autoapprove` varchar(256) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '设置用户是否自动批准授予权限操作, 默认值为 ‘false’, 可选值包括 ‘true’,‘false’, ‘read’,‘write’.',
+  PRIMARY KEY (`client_id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
+-- ----------------------------
+-- Records of oauth_client_details
+-- ----------------------------
+INSERT INTO `oauth_client_details` VALUES ('test', 'future-user-service', '$2a$10$63GiQUHcwX4iLAiPq44DDOH1d6woH7YKV8iuSmhlMI/q1TNsvOqwm', 'all', 'authorization_code', 'http://www.baidu.com', NULL, NULL, NULL, NULL, 'false');
+
+-- ----------------------------
+-- Table structure for oauth_client_token
+-- ----------------------------
 DROP TABLE IF EXISTS `oauth_client_token`;
-CREATE TABLE `oauth_client_token`
-(
-    `token_id`          varchar(255) DEFAULT NULL COMMENT '加密的access_token值',
-    `token`             longblob COMMENT 'OAuth2AccessToken.java对象序列化后的二进制数据',
-    `authentication_id` varchar(255) DEFAULT NULL COMMENT '加密过的username,client_id,scope',
-    `user_name`         varchar(255) DEFAULT NULL COMMENT '登录的用户名',
-    `client_id`         varchar(255) DEFAULT NULL COMMENT '客户端ID'
-) ENGINE = InnoDB
-  DEFAULT CHARSET = utf8;
+CREATE TABLE `oauth_client_token`  (
+  `token_id` varchar(256) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `token` blob NULL,
+  `authentication_id` varchar(128) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `user_name` varchar(256) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `client_id` varchar(256) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  PRIMARY KEY (`authentication_id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
+-- ----------------------------
+-- Records of oauth_client_token
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for oauth_code
+-- ----------------------------
 DROP TABLE IF EXISTS `oauth_code`;
-CREATE TABLE `oauth_code`
-(
-    `code`           varchar(255)   DEFAULT NULL COMMENT '授权码(未加密)',
-    `authentication` varbinary(255) DEFAULT NULL COMMENT 'AuthorizationRequestHolder.java对象序列化后的二进制数据'
-) ENGINE = InnoDB
-  DEFAULT CHARSET = utf8;
+CREATE TABLE `oauth_code`  (
+  `code` varchar(256) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `authentication` blob NULL
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
+-- ----------------------------
+-- Records of oauth_code
+-- ----------------------------
+INSERT INTO `oauth_code` VALUES ('bo15XO', 0xACED0005737200416F72672E737072696E676672616D65776F726B2E73656375726974792E6F61757468322E70726F76696465722E4F417574683241757468656E7469636174696F6EBD400B02166252130200024C000D73746F7265645265717565737474003C4C6F72672F737072696E676672616D65776F726B2F73656375726974792F6F61757468322F70726F76696465722F4F4175746832526571756573743B4C00127573657241757468656E7469636174696F6E7400324C6F72672F737072696E676672616D65776F726B2F73656375726974792F636F72652F41757468656E7469636174696F6E3B787200476F72672E737072696E676672616D65776F726B2E73656375726974792E61757468656E7469636174696F6E2E416273747261637441757468656E7469636174696F6E546F6B656ED3AA287E6E47640E0200035A000D61757468656E746963617465644C000B617574686F7269746965737400164C6A6176612F7574696C2F436F6C6C656374696F6E3B4C000764657461696C737400124C6A6176612F6C616E672F4F626A6563743B787000737200266A6176612E7574696C2E436F6C6C656374696F6E7324556E6D6F6469666961626C654C697374FC0F2531B5EC8E100200014C00046C6973747400104C6A6176612F7574696C2F4C6973743B7872002C6A6176612E7574696C2E436F6C6C656374696F6E7324556E6D6F6469666961626C65436F6C6C656374696F6E19420080CB5EF71E0200014C00016371007E00047870737200136A6176612E7574696C2E41727261794C6973747881D21D99C7619D03000149000473697A65787000000006770400000006737200426F72672E737072696E676672616D65776F726B2E73656375726974792E636F72652E617574686F726974792E53696D706C654772616E746564417574686F7269747900000000000002120200014C0004726F6C657400124C6A6176612F6C616E672F537472696E673B787074000673797374656D7371007E000D740009757365725F617574687371007E000D740008757365725F64656C7371007E000D740009757365725F6C6973747371007E000D740009757365725F736176657371007E000D74000B757365725F7570646174657871007E000C707372003A6F72672E737072696E676672616D65776F726B2E73656375726974792E6F61757468322E70726F76696465722E4F41757468325265717565737400000000000000010200075A0008617070726F7665644C000B617574686F72697469657371007E00044C000A657874656E73696F6E7374000F4C6A6176612F7574696C2F4D61703B4C000B726564697265637455726971007E000E4C00077265667265736874003B4C6F72672F737072696E676672616D65776F726B2F73656375726974792F6F61757468322F70726F76696465722F546F6B656E526571756573743B4C000B7265736F7572636549647374000F4C6A6176612F7574696C2F5365743B4C000D726573706F6E7365547970657371007E001E787200386F72672E737072696E676672616D65776F726B2E73656375726974792E6F61757468322E70726F76696465722E426173655265717565737436287A3EA37169BD0200034C0008636C69656E74496471007E000E4C001172657175657374506172616D657465727371007E001C4C000573636F706571007E001E787074000474657374737200256A6176612E7574696C2E436F6C6C656374696F6E7324556E6D6F6469666961626C654D6170F1A5A8FE74F507420200014C00016D71007E001C7870737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F400000000000067708000000080000000374000D726573706F6E73655F74797065740004636F646574000F7265646972656374696F6E5F757269740014687474703A2F2F7777772E62616964752E636F6D740009636C69656E745F696471007E002178737200256A6176612E7574696C2E436F6C6C656374696F6E7324556E6D6F6469666961626C65536574801D92D18F9B80550200007871007E0009737200176A6176612E7574696C2E4C696E6B656448617368536574D86CD75A95DD2A1E020000787200116A6176612E7574696C2E48617368536574BA44859596B8B7340300007870770C000000103F40000000000001740003616C6C78017371007E002E770C000000103F40000000000000787371007E00243F400000000000007708000000100000000078740014687474703A2F2F7777772E62616964752E636F6D707371007E002E770C000000103F400000000000017400136675747572652D757365722D73657276696365787371007E002E770C000000103F4000000000000171007E0027787372004F6F72672E737072696E676672616D65776F726B2E73656375726974792E61757468656E7469636174696F6E2E557365726E616D6550617373776F726441757468656E7469636174696F6E546F6B656E00000000000002120200024C000B63726564656E7469616C7371007E00054C00097072696E636970616C71007E00057871007E0003017371007E00077371007E000B0000000677040000000671007E000F71007E001171007E001371007E001571007E001771007E00197871007E003A737200486F72672E737072696E676672616D65776F726B2E73656375726974792E7765622E61757468656E7469636174696F6E2E57656241757468656E7469636174696F6E44657461696C7300000000000002120200024C000D72656D6F74654164647265737371007E000E4C000973657373696F6E496471007E000E787074000F303A303A303A303A303A303A303A317400204341303835423039413338314546303737424132373131463733464135374242707372002F636F6D2E71696E6768652E6675747572652E6175746863656E7465722E757365722E766F2E5573657244657461696C75314D69EB3903DF0200044C000667656E64657271007E000E4C000A68656164496D6755726C71007E000E4C00086E69636B4E616D6571007E000E4C000675736572496471007E000E787200326F72672E737072696E676672616D65776F726B2E73656375726974792E636F72652E7573657264657461696C732E5573657200000000000002120200075A00116163636F756E744E6F6E457870697265645A00106163636F756E744E6F6E4C6F636B65645A001563726564656E7469616C734E6F6E457870697265645A0007656E61626C65644C000B617574686F72697469657371007E001E4C000870617373776F726471007E000E4C0008757365726E616D6571007E000E7870010101017371007E002B737200116A6176612E7574696C2E54726565536574DD98509395ED875B0300007870737200466F72672E737072696E676672616D65776F726B2E73656375726974792E636F72652E7573657264657461696C732E5573657224417574686F72697479436F6D70617261746F720000000000000212020000787077040000000671007E000F71007E001171007E001371007E001571007E001771007E00197870740006E5BCA0E6B3A27400013174009C68747470733A2F2F75706C6F61642E6A69616E7368752E696F2F75736572732F75706C6F61645F617661746172732F31393538333932302F63666463623038342D383332622D343361342D383830622D6463643838313234663431323F696D6167654D6F6772322F6175746F2D6F7269656E742F73747269707C696D61676556696577322F312F772F39302F682F39302F666F726D61742F7765627074000CE99A8FE9A38EE8808CE9809D74000131);
+
+-- ----------------------------
+-- Table structure for oauth_refresh_token
+-- ----------------------------
 DROP TABLE IF EXISTS `oauth_refresh_token`;
-CREATE TABLE `oauth_refresh_token`
-(
-    `token_id`       varchar(255) DEFAULT NULL COMMENT '加密过的refresh_token的值',
-    `token`          longblob COMMENT 'OAuth2RefreshToken.java对象序列化后的二进制数据 ',
-    `authentication` longblob COMMENT 'OAuth2Authentication.java对象序列化后的二进制数据'
-) ENGINE = InnoDB
-  DEFAULT CHARSET = utf8;
+CREATE TABLE `oauth_refresh_token`  (
+  `token_id` varchar(256) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `token` blob NULL,
+  `authentication` blob NULL
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of oauth_refresh_token
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for user_permission
+-- ----------------------------
+DROP TABLE IF EXISTS `user_permission`;
+CREATE TABLE `user_permission`  (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `resources_name` varchar(40) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
+  `resources_code` varchar(40) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
+  `show` smallint(11) NULL DEFAULT NULL COMMENT '是否在菜单中显示 0:不显示 1:显示',
+  `pid` int(11) NULL DEFAULT NULL,
+  `uri` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
+  `type` int(11) NULL DEFAULT 1 COMMENT '资源类型 1:目录 2:菜单 3:操作',
+  `open_type` smallint(6) NULL DEFAULT 1 COMMENT '菜单打开方式 1:内部打开 2:外部打开',
+  `sort` int(11) NULL DEFAULT 1,
+  `desc` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
+  `create_time` timestamp(0) NULL DEFAULT CURRENT_TIMESTAMP(0),
+  `update_time` timestamp(0) NULL DEFAULT CURRENT_TIMESTAMP(0) ON UPDATE CURRENT_TIMESTAMP(0),
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of user_permission
+-- ----------------------------
+INSERT INTO `user_permission` VALUES (1, '系统管理', 'system', 1, 0, NULL, 1, 1, 1, NULL, '2021-02-20 10:51:26', '2021-02-20 10:51:26');
+INSERT INTO `user_permission` VALUES (2, '用户管理', 'user_list', 1, 1, NULL, 2, 1, 1, NULL, '2021-02-20 10:33:44', '2021-02-20 10:55:27');
+INSERT INTO `user_permission` VALUES (3, '添加用户', 'user_save', 0, 2, NULL, 3, 1, 1, NULL, '2021-02-20 10:51:46', '2021-02-20 10:56:13');
+INSERT INTO `user_permission` VALUES (4, '删除用户', 'user_del', 0, 2, NULL, 3, 1, 2, NULL, '2021-02-20 10:51:49', '2021-02-20 10:56:14');
+INSERT INTO `user_permission` VALUES (5, '修改用户', 'user_update', 0, 2, NULL, 3, 1, 3, NULL, '2021-02-20 10:55:15', '2021-02-20 10:56:15');
+INSERT INTO `user_permission` VALUES (6, '授权', 'user_auth', 0, 2, NULL, 3, 1, 4, NULL, '2021-02-20 10:56:54', '2021-02-20 10:56:54');
+
+-- ----------------------------
+-- Table structure for user_role
+-- ----------------------------
+DROP TABLE IF EXISTS `user_role`;
+CREATE TABLE `user_role`  (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `role_name` varchar(40) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
+  `role_code` varchar(40) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
+  `sort` int(11) NULL DEFAULT NULL,
+  `desc` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
+  `create_time` timestamp(0) NULL DEFAULT CURRENT_TIMESTAMP(0),
+  `update_time` timestamp(0) NULL DEFAULT CURRENT_TIMESTAMP(0) ON UPDATE CURRENT_TIMESTAMP(0),
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of user_role
+-- ----------------------------
+INSERT INTO `user_role` VALUES (1, '管理员', 'admin', 1, '系统管理员', '2021-02-20 10:29:26', '2021-02-20 10:29:26');
+
+-- ----------------------------
+-- Table structure for user_role_permission_mid
+-- ----------------------------
+DROP TABLE IF EXISTS `user_role_permission_mid`;
+CREATE TABLE `user_role_permission_mid`  (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `role_id` int(11) NULL DEFAULT NULL,
+  `resources_id` int(11) NOT NULL,
+  `create_time` timestamp(0) NULL DEFAULT CURRENT_TIMESTAMP(0),
+  `update_time` timestamp(0) NULL DEFAULT CURRENT_TIMESTAMP(0) ON UPDATE CURRENT_TIMESTAMP(0),
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of user_role_permission_mid
+-- ----------------------------
+INSERT INTO `user_role_permission_mid` VALUES (1, 1, 1, '2021-02-20 10:57:24', '2021-02-20 10:57:24');
+INSERT INTO `user_role_permission_mid` VALUES (2, 1, 2, '2021-02-20 10:57:29', '2021-02-20 10:57:29');
+INSERT INTO `user_role_permission_mid` VALUES (3, 1, 3, '2021-02-20 10:57:33', '2021-02-20 10:57:33');
+INSERT INTO `user_role_permission_mid` VALUES (4, 1, 4, '2021-02-20 10:57:38', '2021-02-20 10:57:38');
+INSERT INTO `user_role_permission_mid` VALUES (5, 1, 5, '2021-02-20 10:57:43', '2021-02-20 10:57:43');
+INSERT INTO `user_role_permission_mid` VALUES (6, 1, 6, '2021-02-20 10:57:48', '2021-02-20 10:57:48');
+
+-- ----------------------------
+-- Table structure for user_user_role_mid
+-- ----------------------------
+DROP TABLE IF EXISTS `user_user_role_mid`;
+CREATE TABLE `user_user_role_mid`  (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NULL DEFAULT NULL,
+  `role_id` int(11) NULL DEFAULT NULL,
+  `create_time` timestamp(0) NULL DEFAULT CURRENT_TIMESTAMP(0),
+  `update_time` timestamp(0) NULL DEFAULT CURRENT_TIMESTAMP(0) ON UPDATE CURRENT_TIMESTAMP(0),
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of user_user_role_mid
+-- ----------------------------
+INSERT INTO `user_user_role_mid` VALUES (1, 1, 1, '2021-02-20 10:58:02', '2021-02-20 10:58:02');
+
+-- ----------------------------
+-- Table structure for user_userinfo
+-- ----------------------------
+DROP TABLE IF EXISTS `user_userinfo`;
+CREATE TABLE `user_userinfo`  (
+  `user_id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(40) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
+  `nick_name` varchar(40) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
+  `head_img_url` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
+  `account` varchar(40) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
+  `gender` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
+  `weixin` varchar(40) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
+  `phone` varchar(11) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
+  `password` varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
+  `is_lock` smallint(1) NULL DEFAULT NULL,
+  `enable` smallint(1) NULL DEFAULT NULL,
+  `create_time` timestamp(0) NULL DEFAULT CURRENT_TIMESTAMP(0),
+  `update_time` timestamp(0) NULL DEFAULT CURRENT_TIMESTAMP(0) ON UPDATE CURRENT_TIMESTAMP(0),
+  PRIMARY KEY (`user_id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of user_userinfo
+-- ----------------------------
+INSERT INTO `user_userinfo` VALUES (1, '张波', '随风而逝', 'https://upload.jianshu.io/users/upload_avatars/19583920/cfdcb084-832b-43a4-880b-dcd88124f412?imageMogr2/auto-orient/strip|imageView2/1/w/90/h/90/format/webp', 'zhangbo', '1', '15686056666', '15686056666', '$2a$10$AnNiDxmN4RB.GYbTK2HQrupFKQYMHgFvPbNi3ymtbiwGY/1mCNSa.', 0, 1, '2021-02-20 09:51:01', '2021-02-20 10:23:38');
+
+SET FOREIGN_KEY_CHECKS = 1;

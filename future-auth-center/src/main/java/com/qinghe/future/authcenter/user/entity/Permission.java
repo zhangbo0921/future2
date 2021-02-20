@@ -31,11 +31,18 @@ public class Permission implements Serializable {
 
     private String resourcesCode;
 
+    /**
+     * 是否在菜单中显示
+     * 0:不显示 1:显示
+     */
+    private Integer show;
+
     private Integer pid;
 
     private String uri;
 
     /**
+     * 菜单打开方式
      * 1:内部打开 2:外部打开
      */
     private Integer openType;
@@ -43,6 +50,7 @@ public class Permission implements Serializable {
     private Integer sort;
 
     /**
+     * 资源类型
      * 1:目录 2:菜单 3:操作
      */
     private Integer type;
