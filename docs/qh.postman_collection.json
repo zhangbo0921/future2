@@ -1,0 +1,341 @@
+{
+	"info": {
+		"_postman_id": "0f82917e-5ee3-4bbd-9f44-ec17bb573dd0",
+		"name": "qh",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "gateway-访问用户服务",
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "accessToken",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOlsiZnV0dXJlLW9yZGVyLXNlcnZpY2UiXSwic2NvcGUiOlsiYWxsIl0sImV4cCI6MTYwMzk3OTY1NCwidXNlcmluZm8iOnsidXNlcklkIjoiMSIsInVzZXJuYW1lIjoi5byg5rOiIiwibmlja05hbWUiOiLpmo_po47ogIzpgJ0iLCJzZXgiOiLnlLciLCJoZWFkSW1nVXJsIjoiaHR0cHM6Ly93d3cuYmFpZHUuY29tL2ltZy9mbGV4aWJsZS9sb2dvL3BjL3Jlc3VsdC5wbmcifSwiYXV0aG9yaXRpZXMiOlsic3lzX3BhcmFtcyIsInN5c19zZXR0aW5nIiwiY291cnNlX2ZpbmRfaWQiLCJ0ZWFjaGVyX2xpc3QiLCJ0ZWFjaGVyIiwiY291cnNlX2ZpbmQxX2lkIiwic3lzX2RlcHQiLCJjb3Vyc2UiLCJjb3Vyc2VfbGlzdCIsInN5c191c2VycyJdLCJqdGkiOiI2ZmE1Y2MxNi1jODJhLTQ4NDktODlkNi1kOGQzMmJmNDFiMjEiLCJjbGllbnRfaWQiOiJ0ZXN0In0.IWBZRwThRCXrl0yBK8ejOvU7bngMiVSouQQEJpI3XEc",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9000/order/list",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"order",
+						"list"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "gateway-访问订单服务",
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "accessToken",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOlsiZnV0dXJlLW9yZGVyLXNlcnZpY2UiXSwic2NvcGUiOlsiYWxsIl0sImV4cCI6MTYwMzk3OTY1NCwidXNlcmluZm8iOnsidXNlcklkIjoiMSIsInVzZXJuYW1lIjoi5byg5rOiIiwibmlja05hbWUiOiLpmo_po47ogIzpgJ0iLCJzZXgiOiLnlLciLCJoZWFkSW1nVXJsIjoiaHR0cHM6Ly93d3cuYmFpZHUuY29tL2ltZy9mbGV4aWJsZS9sb2dvL3BjL3Jlc3VsdC5wbmcifSwiYXV0aG9yaXRpZXMiOlsic3lzX3BhcmFtcyIsInN5c19zZXR0aW5nIiwiY291cnNlX2ZpbmRfaWQiLCJ0ZWFjaGVyX2xpc3QiLCJ0ZWFjaGVyIiwiY291cnNlX2ZpbmQxX2lkIiwic3lzX2RlcHQiLCJjb3Vyc2UiLCJjb3Vyc2VfbGlzdCIsInN5c191c2VycyJdLCJqdGkiOiI2ZmE1Y2MxNi1jODJhLTQ4NDktODlkNi1kOGQzMmJmNDFiMjEiLCJjbGllbnRfaWQiOiJ0ZXN0In0.IWBZRwThRCXrl0yBK8ejOvU7bngMiVSouQQEJpI3XEc",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9000/order/list",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"order",
+						"list"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "gateway-访问支付服务",
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "accessToken",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOlsiZnV0dXJlLXBheS1zZXJ2aWNlIiwiZnV0dXJlLWF1dGgtc2VydmljZSIsImZ1dHVyZS1vcmRlci1zZXJ2aWNlIl0sInNjb3BlIjpbImFsbCJdLCJleHAiOjE2MDQwNDUyNzgsInVzZXJpbmZvIjp7InVzZXJJZCI6IjEiLCJ1c2VybmFtZSI6IuW8oOazoiIsIm5pY2tOYW1lIjoi6ZqP6aOO6ICM6YCdIiwic2V4Ijoi55S3IiwiaGVhZEltZ1VybCI6Imh0dHA6Ly93d3cuYmFpZHUuY29tL3NzLnBuZyJ9LCJhdXRob3JpdGllcyI6WyJhdXRoX3VzZXJfdXBkYXRlIiwiYXV0aF91c2VyX2FkZCIsImF1dGhfdXNlciIsImF1dGhfdXNlcl9saXN0IiwiYXV0aF91c2VyX2RldGFpbCIsImF1dGhfdXNlcl9hdXRob3JpemF0aW9uIiwiYXV0aF91c2VyX2RlbCIsImZ1dHVyZV9vcmRlcl9zZXJ2aWNlIiwib3JkZXJfYWRkIiwib3JkZXJfbGlzdCIsImZ1dHVyZV9hdXRoX3NlcnZpY2UiLCJvcmRlcl91cGRhdGUiLCJvcmRlciJdLCJqdGkiOiI5YmZhOGQ3Zi0zZTkyLTQwNDAtYmFmMS0yNjllNzNmZGFkZTgiLCJjbGllbnRfaWQiOiJ0ZXN0In0.MqJVHPa14uZuBRRtmVCyyd8_BBoYF6y__dDU8vn7iWU",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "orderId",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "price",
+							"value": "99.22",
+							"type": "text"
+						}
+					],
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost/api/v1/pay/orderPay",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"api",
+						"v1",
+						"pay",
+						"orderPay"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "申请code",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/oauth/authorize?client_id=test&response_type=code&redirection_uri=http://www.baidu.com",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"oauth",
+						"authorize"
+					],
+					"query": [
+						{
+							"key": "client_id",
+							"value": "test"
+						},
+						{
+							"key": "response_type",
+							"value": "code"
+						},
+						{
+							"key": "grant_type",
+							"value": "authorization_code",
+							"disabled": true
+						},
+						{
+							"key": "redirection_uri",
+							"value": "http://www.baidu.com"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "申请token-授权码模式",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "client_id",
+							"value": "test",
+							"type": "text"
+						},
+						{
+							"key": "client_secret",
+							"value": "123",
+							"type": "text"
+						},
+						{
+							"key": "code",
+							"value": "4tyBN6",
+							"type": "text"
+						},
+						{
+							"key": "grant_type",
+							"value": "authorization_code",
+							"type": "text"
+						},
+						{
+							"key": "redirect_uri",
+							"value": "http://www.baidu.com",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8000/oauth/token",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"oauth",
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "申请token-密码模式",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "client_id",
+							"value": "test",
+							"type": "text"
+						},
+						{
+							"key": "client_secret",
+							"value": "123",
+							"type": "text"
+						},
+						{
+							"key": "grant_type",
+							"value": "password",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "zhangbo",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "123456",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8000/oauth/token",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"oauth",
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "申请token-客户端模式【主要用于内部系统（没有刷新令牌），如：数据获取】",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "client_id",
+							"value": "test",
+							"type": "text"
+						},
+						{
+							"key": "client_secret",
+							"value": "123",
+							"type": "text"
+						},
+						{
+							"key": "grant_type",
+							"value": "client_credentials",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8000/oauth/token",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"oauth",
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "检查token",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/oauth/check_token?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOlsiZnV0dXJlLW9yZGVyLXNlcnZpY2UiXSwic2NvcGUiOlsiYWxsIl0sImV4cCI6MTYwMzk3OTY1NCwidXNlcmluZm8iOnsidXNlcklkIjoiMSIsInVzZXJuYW1lIjoi5byg5rOiIiwibmlja05hbWUiOiLpmo_po47ogIzpgJ0iLCJzZXgiOiLnlLciLCJoZWFkSW1nVXJsIjoiaHR0cHM6Ly93d3cuYmFpZHUuY29tL2ltZy9mbGV4aWJsZS9sb2dvL3BjL3Jlc3VsdC5wbmcifSwiYXV0aG9yaXRpZXMiOlsic3lzX3BhcmFtcyIsInN5c19zZXR0aW5nIiwiY291cnNlX2ZpbmRfaWQiLCJ0ZWFjaGVyX2xpc3QiLCJ0ZWFjaGVyIiwiY291cnNlX2ZpbmQxX2lkIiwic3lzX2RlcHQiLCJjb3Vyc2UiLCJjb3Vyc2VfbGlzdCIsInN5c191c2VycyJdLCJqdGkiOiI2ZmE1Y2MxNi1jODJhLTQ4NDktODlkNi1kOGQzMmJmNDFiMjEiLCJjbGllbnRfaWQiOiJ0ZXN0In0.IWBZRwThRCXrl0yBK8ejOvU7bngMiVSouQQEJpI3XEc",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"oauth",
+						"check_token"
+					],
+					"query": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOlsiZnV0dXJlLW9yZGVyLXNlcnZpY2UiXSwic2NvcGUiOlsiYWxsIl0sImV4cCI6MTYwMzk3OTY1NCwidXNlcmluZm8iOnsidXNlcklkIjoiMSIsInVzZXJuYW1lIjoi5byg5rOiIiwibmlja05hbWUiOiLpmo_po47ogIzpgJ0iLCJzZXgiOiLnlLciLCJoZWFkSW1nVXJsIjoiaHR0cHM6Ly93d3cuYmFpZHUuY29tL2ltZy9mbGV4aWJsZS9sb2dvL3BjL3Jlc3VsdC5wbmcifSwiYXV0aG9yaXRpZXMiOlsic3lzX3BhcmFtcyIsInN5c19zZXR0aW5nIiwiY291cnNlX2ZpbmRfaWQiLCJ0ZWFjaGVyX2xpc3QiLCJ0ZWFjaGVyIiwiY291cnNlX2ZpbmQxX2lkIiwic3lzX2RlcHQiLCJjb3Vyc2UiLCJjb3Vyc2VfbGlzdCIsInN5c191c2VycyJdLCJqdGkiOiI2ZmE1Y2MxNi1jODJhLTQ4NDktODlkNi1kOGQzMmJmNDFiMjEiLCJjbGllbnRfaWQiOiJ0ZXN0In0.IWBZRwThRCXrl0yBK8ejOvU7bngMiVSouQQEJpI3XEc"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
